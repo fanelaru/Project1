@@ -73,7 +73,9 @@ protected:
     double balance;
 
 public:
-    Account(double bal) {
+    Account() : balance(0) {}
+    
+    Account(double bal) : balance(0) {
         if (bal > 0) {
             balance = bal;
         }
@@ -148,7 +150,7 @@ public:
     Trapezoid(double s1, double s2, double s3, double s4) :
         Quadrilateral(s1, s2, s3, s4) {};
     void display() const override {
-        std::cout << "Trapezoid with sides: " <<
+        std::cout << "Trapezoid has sides: " <<
             side1 << " " << side2 << " " <<
             side3 << " " << side4 << std::endl;
     }
@@ -159,7 +161,7 @@ public:
     Square(double side) :
         Quadrilateral(side, side, side, side) {};
     void display() const override {
-        std::cout << "Square with sides: " <<
+        std::cout << "Square has sides: " <<
             side1 << std::endl;
     }
 };
@@ -190,7 +192,7 @@ int main()
     quads.push_back(&t1);
     quads.push_back(&s1);
 
-    for (Quadrilateral* i : quads)
+    for (Quadrilateral *i : quads)
         i->display();
 
     try
@@ -206,10 +208,15 @@ int main()
     std::vector<int> vect;
     vect.push_back(0);
     vect.push_back(1);
-    // accessing third element, which is non-existence
     try
     {
-        vect.at(2);
+        // accessing third element, which is non-existence
+
+        // Warning	C4834 discarding return value of function with
+        // 'nodiscard' attribute
+        // 
+        // vect.at(2);
+        static_cast<void>(vect.at(2));   
     }
     catch (std::exception& exc)
     {

@@ -186,12 +186,12 @@ int main()
 
     Trapezoid t1(2, 3, 4, 5);
     Square s1(10);
-    std::vector <Quadrilateral*> quads;
+    std::vector <Quadrilateral *> quads;
     quads.push_back(&t1);
     quads.push_back(&s1);
 
-    for (int i = 0; i < quads.size(); ++i)
-        quads[i]->display();
+    for (Quadrilateral* i : quads)
+        i->display();
 
     try
     {
